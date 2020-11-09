@@ -14,6 +14,14 @@ const register = catchAsync(async () => {
   // sendWelcomeEmail(user.email, user.name);
   const token = await user.generateAuthToken();
 
+  const cookieOptions = {
+    expires: new Date(Date.now() + process.env.COOKIE_EXPIRATION_TIME),
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  };
+
+  res.cookie('jwt', token, cookieOptions);
+
   res.status(201).json({
     status: 'success',
     token,
@@ -36,6 +44,14 @@ const login = catchAsync(async (req, res) => {
 
   const user = await User.findByCredentials(req.body.email, req.body.password);
   const token = await user.generateAuthToken();
+
+  const cookieOptions = {
+    expires: new Date(Date.now() + process.env.COOKIE_EXPIRATION_TIME),
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  };
+
+  res.cookie('jwt', token, cookieOptions);
 
   const { firstName, lastName, completed, image, role } = user;
   res.status(201).json({

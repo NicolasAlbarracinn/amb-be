@@ -1,6 +1,8 @@
 require('./db/mongoose');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
+
 const AppError = require('./utils/errorHandler');
 const userRouter = require('./routers/user');
 
@@ -9,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(userRouter);
 
