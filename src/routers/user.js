@@ -103,8 +103,14 @@ const updateProfile = catchAsync(async (req, res, next) => {
   });
 });
 
+const logout = (req, res) => {
+  res.clearCookie('jwt');
+  res.status(200).json({ status: 'success' });
+};
+
 router.post('/users', register);
 router.post('/users/login', login);
+router.get('/users/logout', logout);
 router.post('/users/profile', protect, profile);
 router.patch('/users/profile/edit', protect, updateProfile);
 
