@@ -34,10 +34,19 @@ const userSchema = new mongoose.Schema(
     lastName: {
       type: String,
     },
+    image: {
+      base64: String,
+      imageFormat: String,
+    },
     completed: {
       type: Boolean,
       required: true,
       default: false,
+    },
+    role: {
+      type: String,
+      enum: ['financista', 'vendedores', 'asociado', 'potencialAsociado', 'empleado'],
+      default: 'potencialAsociado',
     },
   },
   {
