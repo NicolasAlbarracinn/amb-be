@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const AppError = require('./utils/errorHandler');
-const userRouter = require('./routers/user');
+const routes = require('./routers');
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(userRouter);
+app.use('/api', routes);
 
 //Handle non-existent routes
 app.all('*', (req, res, next) => {
