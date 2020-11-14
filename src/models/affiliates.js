@@ -7,12 +7,12 @@ const { Schema } = mongoose;
 const affiliatesSchema = new Schema({
   patnerNumber: {
     // N° Socio.
-    type: Number,
+    type: String,
     required: [true, 'patnerNumber is required'],
   },
   folderNumber: {
     // N° Legajo.
-    type: Number,
+    type: String,
     required: [true, 'folderNumber is required'],
   },
   cuil: {
