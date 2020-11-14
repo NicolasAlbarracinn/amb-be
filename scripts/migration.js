@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Affiliates = require('../src/models/affiliates');
 
 mongoose
-  .connect('mongodb+srv://<user>:<pass>@amebotest.w3uxb.gcp.mongodb.net/amebo-tst?retryWrites=true&w=majority', {
+  .connect('mongodb+srv://admintest:12341234@amebotest.w3uxb.gcp.mongodb.net/amebo-tst?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -25,4 +25,18 @@ const importData = async () => {
   }
 };
 
-importData();
+const deleteData = async () => {
+  try {
+    await Affiliates.deleteMany();
+    console.log('Data succefully deleted!');
+    process.exit();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+if (process.argv[2] === '--import') {
+  importData();
+} else if (process.argv[2] === '--delete') {
+  deleteData();
+}
