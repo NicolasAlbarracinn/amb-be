@@ -9,16 +9,22 @@ exports.getOne = () => {};
 //posibles sort criterias parameters: "asc", "desc", "ascending", "descending", 1, or -1
 //TODO: Improve this
 exports.getAll = catchAsync(async (req, res, next) => {
-  let dbQuery;
-  const { sortFiel, sortCriteria } = req.query;
+  const { sortField, sortCriteria, limit, offset } = req.query;
 
-  if (sortFiel && sortCriteria) {
-    dbQuery = Affiliates.find().sort({ [sortFiel]: sortCriteria });
-  } else {
-    dbQuery = Affiliates.find();
+  const query = [];
+
+  if (sortField && sortCriteria) {
+    query.push({ $sort: { [sortField]: sortCriteria === 'asc' ? 1 : -1 } });
   }
 
-  const documents = await dbQuery;
+  if (offset) {
+    query.push({ $skip: parseInt(offset) });
+  }
+  if (limit) {
+    query.push({ $limit: parseInt(limit) });
+  }
+
+  const documents = await Affiliates.aggregate(query);
 
   if (!documents) {
     return next(new AppError('No affiliates list'), 400);
