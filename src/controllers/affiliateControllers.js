@@ -9,12 +9,12 @@ exports.getOne = () => {};
 //posibles sort criterias parameters: "asc", "desc", "ascending", "descending", 1, or -1
 //TODO: Improve this
 exports.getAll = catchAsync(async (req, res, next) => {
-  const { sortFiel, sortCriteria, limit, offset } = req.query;
+  const { sortField, sortCriteria, limit, offset } = req.query;
 
   const query = [];
 
-  if (sortFiel && sortCriteria) {
-    query.push({ $sort: { [sortFiel]: sortCriteria === 'asc' ? 1 : -1 } });
+  if (sortField && sortCriteria) {
+    query.push({ $sort: { [sortField]: sortCriteria === 'asc' ? 1 : -1 } });
   }
 
   if (offset) {
