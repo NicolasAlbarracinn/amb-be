@@ -13,15 +13,15 @@ exports.getAll = catchAsync(async (req, res, next) => {
 
   const query = [];
 
+  if (sortFiel && sortCriteria) {
+    query.push({ $sort: { [sortFiel]: sortCriteria === 'asc' ? 1 : -1 } });
+  }
+
   if (offset) {
     query.push({ $skip: parseInt(offset) });
   }
   if (limit) {
     query.push({ $limit: parseInt(limit) });
-  }
-
-  if (sortFiel && sortCriteria) {
-    query.push({ $sort: { [sortFiel]: sortCriteria === 'asc' ? 1 : -1 } });
   }
 
   const documents = await Affiliates.aggregate(query);
