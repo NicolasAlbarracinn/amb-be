@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 //we should think about validation
-//This are just the fields for the affiliates table, we need to think which is the best way to add the others fields to the schema
-const affiliatesSchema = new Schema({
+//This are just the fields for the partners table, we need to think which is the best way to add the others fields to the schema
+const partnersSchema = new Schema({
   patnerNumber: {
     // N° Socio.
     type: String,
@@ -54,9 +54,9 @@ const affiliatesSchema = new Schema({
   },
 });
 
-const Affiliates = mongoose.model('Affiliates', affiliatesSchema);
+const Partners = mongoose.model('Partners', partnersSchema);
 
-module.exports = Affiliates;
+module.exports = Partners;
 
 // N° de Socio
 

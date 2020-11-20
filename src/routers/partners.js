@@ -1,6 +1,6 @@
 const express = require('express');
 const { protect } = require('../middleware/validateUser');
-const { getAll } = require('../controllers/affiliateControllers');
+const { getAll } = require('../controllers/partnersControllers');
 
 const router = new express.Router();
 

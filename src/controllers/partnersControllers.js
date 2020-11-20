@@ -1,4 +1,4 @@
-const Affiliates = require('../models/affiliates');
+const Partners = require('../models/partners');
 
 const AppError = require('../utils/errorHandler');
 const catchAsync = require('../utils/catchAsync');
@@ -24,10 +24,10 @@ exports.getAll = catchAsync(async (req, res, next) => {
     query.push({ $limit: parseInt(limit) });
   }
 
-  const documents = await Affiliates.aggregate(query);
+  const documents = await Partners.aggregate(query);
 
   if (!documents) {
-    return next(new AppError('No affiliates list'), 400);
+    return next(new AppError('No partners list'), 400);
   }
 
   res.status(200).json({

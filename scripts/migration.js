@@ -1,6 +1,6 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
-const Affiliates = require('../src/models/affiliates');
+const Partners = require('../src/models/partners');
 
 mongoose
   .connect('mongodb+srv://admintest:12341234@amebotest.w3uxb.gcp.mongodb.net/amebo-tst?retryWrites=true&w=majority', {
@@ -13,11 +13,11 @@ mongoose
   })
   .catch(e => console.log(e));
 
-const affiliatesData = JSON.parse(fs.readFileSync(`${__dirname}/affiliatesMock.json`, 'utf-8'));
+const partnersData = JSON.parse(fs.readFileSync(`${__dirname}/partnersMock.json`, 'utf-8'));
 
 const importData = async () => {
   try {
-    await Affiliates.create(affiliatesData);
+    await Partners.create(partnersData);
     console.log('Data succefully loaded!');
     process.exit();
   } catch (e) {
@@ -27,7 +27,7 @@ const importData = async () => {
 
 const deleteData = async () => {
   try {
-    await Affiliates.deleteMany();
+    await Partners.deleteMany();
     console.log('Data succefully deleted!');
     process.exit();
   } catch (e) {
