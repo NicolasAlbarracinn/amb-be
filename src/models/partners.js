@@ -5,54 +5,162 @@ const { Schema } = mongoose;
 //we should think about validation
 //This are just the fields for the partners table, we need to think which is the best way to add the others fields to the schema
 const partnersSchema = new Schema({
-  patnerNumber: {
-    // N° Socio.
-    type: String,
-    required: [true, 'patnerNumber is required'],
+  partnerId: { 
+    type: Number,
+    required: true,
+    unique : true
   },
-  folderNumber: {
-    // N° Legajo.
-    type: String,
-    required: [true, 'folderNumber is required'],
-  },
-  cuil: {
-    type: String,
-    required: [true, 'cuil is required'],
-  },
-  dni: {
-    type: String,
-    required: [true, 'dni is required'],
-  },
-  personalInfo: {
-    firstName: {
+  personalData: {
+    documentType: {
       type: String,
+      required: true,
+    },
+    documentNumber: {
+      type: Number,
+      required: true,
+    },
+    procedureNumber: {
+      type: Number,
+      required: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+    },
+    cuil: {
+      type: Number,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
     },
     lastName: {
       type: String,
+      required: true,
+    },
+    country: {
+      type: String,
+      required: true,
+    },
+    birthPlace: {
+      type: String,
+      required: true,
+    },
+    civilState: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    },
+    personalPhone: {
+      type: String,
+    },
+    salary: {
+      type: Number,
+    },
+    netSalary: {
+      type: Number,
+    },
+    socialQuota: {
+      type: String,
+      required: true,
+    },
+    paymentType: {
+      type: String,
+      required: true,
+    },
+    recoveryPaymentType: {
+      type: String,
+      required: true,
+    },
+    recoveryPaymentType: {
+      type: String,
+      required: false,
     },
   },
-  status: {
-    //is this a boolean or a enum with options?
-    type: Boolean,
+  adress: {
+    streetAdress: {
+      type: String,
+      required: true,
+    },
+    floor: {
+      type: String,
+      required: true,
+    },
+    aptNumber: {
+      type: String,
+      required: true,
+    },
+    department: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    province: {
+      type: String,
+      required: true,
+    },
+    postalCode: {
+      type: String,
+      required: true,
+    },
+    observations: {
+      type: String,
+      required: true,
+    },
   },
-  distribution: {
-    //Repartición
-    type: String,
+  workInfo: {
+    repartition: {
+      type: String,
+      required: true,
+    },
+    fileNumber: {
+      type: Number,
+      required: true,
+    },
+    fileItem: {
+      type: String,
+      required: true,
+    },
+    cbu: {
+      type: Number,
+      required: true,
+    },
+    bank: {
+      type: String,
+      required: true,
+    },
+    branch: {
+      type: Number,
+      required: true,
+    },
+    banking: {
+      type: Number,
+      required: true,
+    },
+    accountNumber: {
+      type: Number,
+      required: true,
+    },
+    observations: {
+      type: String,
+      required: true,
+    },
   },
-  admissionDate: {
-    type: Date,
-    default: new Date(),
+
+  createdBy: {
+    type: Schema.Types.ObjectId, ref: 'User'
   },
-  paymentMethod: {
-    type: String,
-    enum: ['credit car', 'cash'], // Other methods?
-  },
-  //this should be a Schema.Types.ObjectID that reference to comercializador schema/document
-  //for now i will leave it as a string. do we need to create the schema or is the user?
-  comercializador: {
-    type: String,
-  },
-});
+  
+}, { timestamps: true });
 
 const Partners = mongoose.model('Partners', partnersSchema);
 

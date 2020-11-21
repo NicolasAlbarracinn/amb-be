@@ -37,5 +37,20 @@ exports.getAll = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.savePartner = catchAsync(async (req, res, next) => {
+  const partner = new Partners({
+    ...req.body,
+    partnerId: 1,
+    createdBy: req.user._id,
+})
+  console.log(req.body);
+  await partner.save();
+
+  res.status(200).json({
+    status: 'success',
+    data: {partnerId: 1},
+  });
+});
+
 const updateOne = () => {};
 const deleteOne = () => {};
