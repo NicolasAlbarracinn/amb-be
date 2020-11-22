@@ -17,23 +17,28 @@ exports.getAll = catchAsync(async (req, res, next) => {
     query.push({ $sort: { [sortField]: sortCriteria === 'asc' ? 1 : -1 } });
   }
 
-  if (offset) {
-    query.push({ $skip: parseInt(offset) });
-  }
-  if (limit) {
-    query.push({ $limit: parseInt(limit) });
-  }
+  query.push({
+    $facet: {
+      metadata: [{ $count: 'count' }],
+      data: [{ $skip: parseInt(offset) }, { $limit: parseInt(limit) }], // add projection here wish you re-shape the docs
+    },
+  });
 
-  const documents = await Partners.aggregate(query);
+  const [
+    {
+      data,
+      metadata: [{ count }],
+    },
+  ] = await Partners.aggregate(query);
 
-  if (!documents) {
+  if (!data) {
     return next(new AppError('No partners list'), 400);
   }
 
   res.status(200).json({
     status: 'success',
-    results: documents.length,
-    data: documents,
+    count,
+    data,
   });
 });
 
@@ -42,13 +47,12 @@ exports.savePartner = catchAsync(async (req, res, next) => {
     ...req.body,
     partnerId: 1,
     createdBy: req.user._id,
-})
-  console.log(req.body);
+  });
   await partner.save();
 
   res.status(200).json({
     status: 'success',
-    data: {partnerId: 1},
+    data: { partnerId: 1 },
   });
 });
 
