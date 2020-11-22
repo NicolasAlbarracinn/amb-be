@@ -2,6 +2,7 @@ const Partners = require('../models/partners');
 
 const AppError = require('../utils/errorHandler');
 const catchAsync = require('../utils/catchAsync');
+const { getValueForNextSequence } = require('../utils/sequenceValues');
 
 const createOne = () => {};
 exports.getOne = () => {};
@@ -38,17 +39,17 @@ exports.getAll = catchAsync(async (req, res, next) => {
 });
 
 exports.savePartner = catchAsync(async (req, res, next) => {
+  const newPartnerId = await getValueForNextSequence(Partners, "partnerId");
   const partner = new Partners({
     ...req.body,
-    partnerId: 1,
+    partnerId: newPartnerId,
     createdBy: req.user._id,
 })
-  console.log(req.body);
   await partner.save();
 
   res.status(200).json({
     status: 'success',
-    data: {partnerId: 1},
+    data: {partnerId: newPartnerId},
   });
 });
 
