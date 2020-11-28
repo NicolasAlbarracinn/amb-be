@@ -3,89 +3,42 @@ const AppError = require('../utils/errorHandler');
 exports.renaper = (req, res, next) => {
   const renaperData =  {
     personalData: {
-      documentType: {
-        value: 'dni',
-        isValid: true,
-      },
-      documentNumber: {
-        value: '37278172',
-        isValid: true,
-      },
-      gender: {
-        value: 'm',
-        isValid: true,
-      },
-      cuil: {
-        value: '20372781727',
-        isValid: true,
-      },
-      name: {
-        value: 'Nicolas',
-        isValid: true,
-      },
-      lastName: {
-        value: 'Albarracin',
-        isValid: true,
-      },
-      country: {
-        value: 'argentina',
-        isValid: true,
-      },
-      birthPlace: {
-        value: 'argentina',
-        isValid: true,
-      },
-      civilState: {
-        value: 's',
-        isValid: true,
-      },
-      email: {
-        value: 'nicodare@gmail.com',
-        isValid: true,
-      },
-      phone: {
-        value: '1562685678',
-        isValid: true,
-      },
-      personalPhone: {
-        value: '1562685678',
-        isValid: true,
-      },
-    },
+      birthPlace: "argentina",
+      civilState: "s",
+      country: "argentina",
+      cuil: 20382781727,
+      documentNumber: 38278172,
+      documentType: "dni",
+      email: "nicodare@gmail.com",
+      gender: "m",
+      isValid: true,
+      lastName: "Albarracin",
+      name: "Nicolas",
+      netSalary: 11000,
+      otherPerferences: "aaa",
+      partnerId: "",
+      paymentType: "dr",
+      personalPhone: "1562685678",
+      phone: "1562685678",
+      procedureNumber: 21233943,
+      recoveryPaymentType: "dbic",
+      salary: 160000,
+      socialQuota: "6000",
+  },
     adress: {
-      streetAdress: {
-        value: 'Miller 2330',
-        isValid: true,
-      },
-      floor: {
-        value: '5to',
-        isValid: true,
-      },
-      aptNumber: {
-        value: 'C',
-        isValid: true,
-      },
-      department: {
-        value: 'Villa Urquiza',
-        isValid: true,
-      },
-      location: {
-        value: 'CABA',
-        isValid: true,
-      },
-      province: {
-        value: 'Buenos Aires',
-        isValid: true,
-      },
-      postalCode: {
-        value: '1431',
-        isValid: true,
-      },
-      observations: {
-        value: 'fafita',
-        isValid: true,
-      },
-    }
+      aptNumber: "C",
+      department: "Villa Urquiza",
+      floor: "5to",
+      isValid: true,
+      location: "CABA",
+      observations: "1562685678",
+      postalCode: "1431",
+      province: "Buenos Aires",
+      streetAdress: "Miller 2330",
+    },
+    workInfo : {
+
+    },
   }
   res
     .status(200)

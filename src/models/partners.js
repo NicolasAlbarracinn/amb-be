@@ -82,6 +82,10 @@ const partnersSchema = new Schema({
       type: String,
       required: false,
     },
+    otherPerferences: {
+      type: String,
+      required: false,
+    },
   },
   adress: {
     streetAdress: {
@@ -114,7 +118,7 @@ const partnersSchema = new Schema({
     },
     observations: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   workInfo: {
@@ -152,11 +156,14 @@ const partnersSchema = new Schema({
     },
     observations: {
       type: String,
-      required: true,
+      required: false,
     },
   },
 
   createdBy: {
+    type: Schema.Types.ObjectId, ref: 'User'
+  },
+  modifiedBy: {
     type: Schema.Types.ObjectId, ref: 'User'
   },
   

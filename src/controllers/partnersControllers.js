@@ -58,5 +58,21 @@ exports.savePartner = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.updatePartner = catchAsync(async (req, res, next) => {
+  const updatedPartner = await Partners.findOneAndUpdate(
+    { partnerId: req.body.partnerId },
+    {
+      ...req.body.data,
+      modifiedBy: req.user._id,
+    },
+    { new: true },
+  ).exec();
+
+  res.status(200).json({
+    status: 'success',
+    data: {},
+  });
+});
+
 const updateOne = () => {};
 const deleteOne = () => {};
