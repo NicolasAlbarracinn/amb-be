@@ -10,6 +10,11 @@ const partnersSchema = new Schema({
     required: true,
     unique : true
   },
+  status: { 
+    type: String,
+    required: true,
+    default: 'a',
+  },
   personalData: {
     documentType: {
       type: String,
@@ -142,8 +147,8 @@ const partnersSchema = new Schema({
       type: String,
       required: true,
     },
-    branch: {
-      type: Number,
+    officeName: {
+      type: String,
       required: true,
     },
     banking: {

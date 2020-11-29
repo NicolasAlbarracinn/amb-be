@@ -11,7 +11,6 @@ exports.renaper = (req, res, next) => {
       documentType: "dni",
       email: "nicodare@gmail.com",
       gender: "m",
-      isValid: true,
       lastName: "Albarracin",
       name: "Nicolas",
       netSalary: 11000,
