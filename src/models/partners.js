@@ -6,9 +6,14 @@ const { Schema } = mongoose;
 //This are just the fields for the partners table, we need to think which is the best way to add the others fields to the schema
 const partnersSchema = new Schema({
   partnerId: { 
-    type: Number,
+    type: String,
     required: true,
-    unique : true
+    unique : true,
+  },
+  status: { 
+    type: String,
+    required: true,
+    default: 'a',
   },
   personalData: {
     documentType: {
@@ -16,20 +21,23 @@ const partnersSchema = new Schema({
       required: true,
     },
     documentNumber: {
-      type: Number,
+      type: String,
       required: true,
+      unique : true,
     },
     procedureNumber: {
-      type: Number,
+      type: String,
       required: true,
+      unique : true,
     },
     gender: {
       type: String,
       required: true,
     },
     cuil: {
-      type: Number,
+      type: String,
       required: true,
+      unique : true,
     },
     name: {
       type: String,
@@ -127,7 +135,7 @@ const partnersSchema = new Schema({
       required: true,
     },
     fileNumber: {
-      type: Number,
+      type: String,
       required: true,
     },
     fileItem: {
@@ -135,23 +143,23 @@ const partnersSchema = new Schema({
       required: true,
     },
     cbu: {
-      type: Number,
-      required: true,
-    },
-    bank: {
       type: String,
       required: true,
     },
-    branch: {
-      type: Number,
+    bankName: {
+      type: String,
       required: true,
     },
-    banking: {
-      type: Number,
+    bankBranchName: {
+      type: String,
       required: true,
     },
-    accountNumber: {
-      type: Number,
+    bankBranchCode: {
+      type: String,
+      required: true,
+    },
+    bankAccountNumber: {
+      type: String,
       required: true,
     },
     observations: {

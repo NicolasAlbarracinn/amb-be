@@ -1,14 +1,21 @@
 const express = require('express');
 const { protect } = require('../middleware/validateUser');
-const { getAll, savePartner, updatePartner, getOne } = require('../controllers/partnersControllers');
+const {
+  getAll,
+  savePartner,
+  updatePartner,
+  updatePartnerStatus,
+  getOne,
+} = require('../controllers/partnersControllers');
 
 const router = new express.Router();
 
 // router.get('/:partnerId', getOne);
 
-// router.use(protect);
-
-router.route('/').get(getAll).post(savePartner).patch(updatePartner);
+router.get('/', getAll);
+router.post('/', savePartner);
+router.patch('/', updatePartner);
+router.patch('/updateStatus', updatePartnerStatus);
 
 router.route('/:partnerId').get(getOne);
 
