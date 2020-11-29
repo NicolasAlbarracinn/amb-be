@@ -4,7 +4,7 @@ const { createOne, getParnetInfo } = require('../controllers/benefitsController'
 
 const router = new express.Router();
 
-// router.use(protect);
+router.use(protect);
 router.get('/:partnerId', getParnetInfo);
 router.post('/', createOne);
 
