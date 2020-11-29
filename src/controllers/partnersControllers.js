@@ -5,7 +5,18 @@ const catchAsync = require('../utils/catchAsync');
 const { getValueForNextSequence } = require('../utils/sequenceValues');
 
 const createOne = () => {};
-exports.getOne = () => {};
+exports.getOne = catchAsync(async (req, res, next) => {
+  const data = await Partners.findOne({ partnerId: req.params.partnerId });
+
+  if (!data) {
+    return next(new AppError('El socio no existe', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data,
+  });
+});
 
 //posibles sort criterias parameters: "asc", "desc", "ascending", "descending", 1, or -1
 //TODO: Improve this
