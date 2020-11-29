@@ -4,8 +4,6 @@ const { getAll, savePartner, updatePartner, updatePartnerStatus } = require('../
 
 const router = new express.Router();
 
-router.use(protect);
-
 router.get('/', getAll);
 router.post('/', savePartner);
 router.patch('/', updatePartner);
