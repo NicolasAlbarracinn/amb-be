@@ -7,11 +7,12 @@ const { getValueForNextSequence } = require('../utils/sequenceValues');
 
 exports.createOne = catchAsync(async (req, res, next) => {
   const newBenefitsId = await getValueForNextSequence(Benefits, 'benefitId');
-  const benefit = new Partners({
+  const benefit = new Benefits({
     ...req.body,
     benefitId: newBenefitsId,
     createdBy: req.user._id,
   });
+
   await benefit.save();
 
   res.status(200).json({
