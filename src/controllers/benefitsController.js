@@ -22,7 +22,7 @@ exports.createOne = catchAsync(async (req, res, next) => {
 });
 
 const selectFields =
-  'modifiedBy createdAt createdBy status workInfo.repartition workInfo.fileNumber workInfo.fileItem  workInfo.bankName workInfo.cbu workInfo.bankBranchName workInfo.bankAccountNumber personalData.documentType personalData.documentNumber personalData.gender personalData.cuil personalData.name personalData.lastName personalData.civilState personalData.email';
+  'modifiedBy createdAt createdBy status workInfo.repartition workInfo.fileNumber workInfo.fileItem  workInfo.bankName workInfo.cbu workInfo.bankBranchName workInfo.bankAccountNumber personalData.recoveryPaymentType personalData.paymentType personalData.documentType personalData.documentNumber personalData.gender personalData.cuil personalData.name personalData.lastName personalData.civilState personalData.email';
 
 exports.getParnetInfo = catchAsync(async (req, res, next) => {
   if (!req.params.partnerId) {
