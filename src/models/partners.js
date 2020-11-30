@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 //This are just the fields for the partners table, we need to think which is the best way to add the others fields to the schema
 const partnersSchema = new Schema({
   partnerId: { 
-    type: String,
+    type: Number,
     required: true,
     unique : true,
   },

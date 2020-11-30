@@ -19,7 +19,7 @@ exports.renaper = (req, res, next) => {
       paymentType: "dr",
       personalPhone: "1562685678",
       phone: "1562685678",
-      procedureNumber: 21233943,
+      procedureNumber: 272339423,
       recoveryPaymentType: "dbic",
       salary: 160000,
       socialQuota: "6000",
